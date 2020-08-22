@@ -5,37 +5,6 @@
 #include <string>
 #include <chrono>
 
-/*template <typename T>
-concept LandType = requires() {
-    std::is_arithmetic_v<T>;
-};
-
-namespace code_kingdom {
-    template <LandType T>
-    class land {
-    public:
-        explicit land(T t) {
-            vec.push_back(t);
-        };
-
-        void insert(T t) {
-            vec.push_back(t);
-        }
-
-        T sum() {
-            return std::accumulate(vec.begin(), vec.end(), T());
-        }
-
-    private:
-        std::vector<T> vec;
-    };
-
-    template <LandType T>
-    land<T> generate_land() {
-        return land<T>();
-    }
-}*/
-
 class goblin {};
 
 #if __cplusplus <= 201103L // C++11
@@ -98,32 +67,53 @@ constexpr auto sum(Args ...args) {
     return (args + ...);
 }
 
+template <typename T>
+concept LandType = std::is_arithmetic_v<T>;
+
+namespace code_kingdom {
+    template <LandType T>
+    class land {
+    public:
+        explicit land(T t) {
+            vec.push_back(t);
+        };
+
+        void insert(T t) {
+            vec.push_back(t);
+        }
+
+        T sum() {
+            return std::accumulate(vec.begin(), vec.end(), T());
+        }
+
+    private:
+        std::vector<T> vec;
+    };
+
+    template <LandType T>
+    land<T> generate_land() {
+        return land<T>();
+    }
+}
+
 #endif
 
 int main() {
-    int a = 90;
-    auto start = std::chrono::high_resolution_clock::now();
-    //double res = sum(a, 200.3, 8, 4, 5, 3.2, 1, 0.2, 200);
-    constexpr double res = sum(90.0, 200.3, 8, 4, 5, 3.2, 1, 0.2, 200);
-    auto stop = std::chrono::high_resolution_clock::now();
-    std::cout << std::chrono::duration_cast<std::chrono::nanoseconds>(stop - start).count() << std::endl;
-    std::cout << res << std::endl;
+    using namespace std::string_literals;
 
-    /*using namespace std::string_literals;
+    // code_kingdom::land l("1"s);  // Compilation error
+    // l.insert("2.3"s);
+    // l.insert("4"s);
+    // std::cout << l.sum() << std::endl;
 
-    code_kingdom::land l("1"s);
-    l.insert("2.3"s);
-    l.insert("4"s);
-    std::cout << l.sum() << std::endl;*/
-
-    /*code_kingdom::land l2(1.5);
+    code_kingdom::land l2(1.5);
     l2.insert(2.3);
     l2.insert(4);
     std::cout << l2.sum() << std::endl;
 
     goblin g;
-    code_kingdom::land l(g);
-    l.sum();*/
+    //code_kingdom::land l3(g); // Compilation error
+    // l3.sum();
 
-    return res;
+    return EXIT_SUCCESS;
 }
