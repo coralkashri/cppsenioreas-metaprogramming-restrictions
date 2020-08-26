@@ -59,6 +59,22 @@ typename std::enable_if_t<(std::is_arithmetic_v<Args> && ...), decltype((Args() 
 
 #else // C++20
 
+namespace std {
+    string to_string(string &&val) {
+        return val;
+    }
+}
+
+template <typename T>
+concept Stringable = requires(T type) {
+    { std::to_string(type) };
+};
+
+template <Stringable ...Args>
+std::string chain_strings(Args ...args) {
+    return (std::string() + ... + std::to_string(args));
+}
+
 template <typename T>
 concept Arithmetic = std::is_arithmetic_v<T>;
 
@@ -101,6 +117,12 @@ namespace code_kingdom {
 int main() {
     using namespace std::string_literals;
 
+#if __cplusplus > 201703L
+
+    /// Example 1
+    std::cout << chain_strings(2, " + ", 3.5, " = ", 2 + 3.5) << std::endl;
+
+    /// Example 2
     // code_kingdom::land l("1"s);  // Compilation error
     // l.insert("2.3"s);
     // l.insert("4"s);
@@ -114,6 +136,7 @@ int main() {
     goblin g;
     //code_kingdom::land l3(g); // Compilation error
     // l3.sum();
+#endif
 
     return EXIT_SUCCESS;
 }
