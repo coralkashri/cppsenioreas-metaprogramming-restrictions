@@ -15,7 +15,7 @@ class goblin {};
 #if __cplusplus <= 201103L // C++11
 
 /*
- * Examples from - CppSenioreas::TheExactSolutionForAGenericProblem
+ * Examples from - cpp_senioreas::the_exact_solution_for_a_generic_problem
  * https://cppsenioreas.wordpress.com/2020/08/14/the-exact-solution-for-a-generic-problem-part-1/
  * https://cppsenioreas.wordpress.com/2020/08/18/the-exact-solution-for-a-generic-problem-part-2/
  */
@@ -42,7 +42,7 @@ typename std::common_type<T, Args...>::type sum(T t, Args ...args) {
 #elif __cplusplus > 201103L && __cplusplus <= 201402L // C++14
 
 /*
- * Examples from - CppSenioreas::TheExactSolutionForAGenericProblem
+ * Examples from - cpp_senioreas::the_exact_solution_for_a_generic_problem
  * https://cppsenioreas.wordpress.com/2020/08/14/the-exact-solution-for-a-generic-problem-part-1/
  * https://cppsenioreas.wordpress.com/2020/08/18/the-exact-solution-for-a-generic-problem-part-2/
  */
@@ -70,7 +70,7 @@ auto sum(T t, Args ...args) {
 #elif __cplusplus > 201402L && __cplusplus <= 201703L // C++17
 
 /*
- * Examples from - CppSenioreas::TheExactSolutionForAGenericProblem
+ * Examples from - cpp_senioreas::the_exact_solution_for_a_generic_problem
  * https://cppsenioreas.wordpress.com/2020/08/14/the-exact-solution-for-a-generic-problem-part-1/
  * https://cppsenioreas.wordpress.com/2020/08/18/the-exact-solution-for-a-generic-problem-part-2/
  */
@@ -81,8 +81,8 @@ typename std::enable_if_t<(std::is_arithmetic_v<Args> && ...), decltype((Args() 
 }
 
 /*
- * Examples from - CppSenioreas::SubstitutionFailureIsNotAnError_SFINAE
- * // TODO: add a link
+ * Examples from - cpp_senioreas::substitution_failure_is_not_an_error_SFINAE
+ * https://cppsenioreas.wordpress.com/2020/08/27/substitution-failure-is-not-an-error-sfinae/
  */
 
 class base { public: virtual void func() = 0; };
@@ -117,7 +117,7 @@ auto my_sum(T num1, U num2) {
 #else // C++20
 
 /*
- * Examples from - CppSenioreas::TheExactSolutionForAGenericProblem
+ * Examples from - cpp_senioreas::the_exact_solution_for_a_generic_problem
  * https://cppsenioreas.wordpress.com/2020/08/14/the-exact-solution-for-a-generic-problem-part-1/
  * https://cppsenioreas.wordpress.com/2020/08/18/the-exact-solution-for-a-generic-problem-part-2/
  */
@@ -159,8 +159,8 @@ namespace code_kingdom {
 }
 
 /*
- * Examples from - CppSenioreas::SubstitutionFailureIsNotAnError_SFINAE
- * // TODO: add a link
+ * Examples from - cpp_senioreas::substitution_failure_is_not_an_error_SFINAE
+ * https://cppsenioreas.wordpress.com/2020/08/27/substitution-failure-is-not-an-error-sfinae/
  */
 
 // Stringable
